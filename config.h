@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 5;
+static const unsigned int gappx     = 0;
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
@@ -64,6 +64,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "termite", NULL };
+static const char *shutdown[]  = { "shutdown",  "-h", "now", NULL };
+static const char *restart[]  = { "reboot", NULL };
 static const char *doom[]     = { "/home/magneto/.emacs.d/bin/doom", "run", NULL };
 static const char *firefox[]  = { "firefox", NULL };
 static const char *spotify[]  = { "spotify", NULL };
@@ -73,7 +75,7 @@ static const char *librewolf[]  = { "librewolf", NULL };
 static const char *librewolfPrivate[]  = { "librewolf", "-private-window", NULL };
 static const char *brave[]  = { "brave", "-private-window", NULL };
 static const char *bravePrivate[]  = { "brave", "-private-window", NULL };
-static const char *chrome[]  = { "google-chorme-stable", NULL };
+static const char *chrome[]  = { "google-chrome-stable", NULL };
 static const char *chromium[]  = { "chromium", NULL };
 static const char *vscode[]  = { "vscode", NULL };
 static const char *vim[]  = { "termite", "-e", "vim", NULL };
@@ -87,7 +89,7 @@ static const char *blueman[]  = { "blueman-manager", NULL };
 static const char *nmdmenu[]  = { "networkmanager_dmenu", NULL };
 static const char *vlc[]  = { "vlc", NULL };
 static const char *pavucontrol[]  = { "pavucontrol", NULL };
-static const char *i3lock[]  = { "sh", "/home/magneto/.config/i3/scripts/.lock.sh", NULL };
+static const char *i3lock[]  = { "sh", "/home/magneto/.config/mscripts/.lock.sh", NULL };
 static const char *clipGoShow[]  = { "/home/magneto/go/bin/clipGo", "show", NULL };
 static const char *clipGoDelete[]  = { "/home/magneto/go/bin/clipGo", "delete", NULL };
 static const char *cliplistner[]  = { "sh", "/home/magneto/.config/mtools/cliplistner.sh", NULL };
@@ -153,7 +155,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_z,      setlayout,      {.v = &layouts[0]} },
 	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {0} },
 	{ MODKEY,                       XK_space,  togglefloating, {0} },
@@ -173,6 +175,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ControlMask,           XK_q,      spawn,          {.v = shutdown} },
+	{ MODKEY|Mod1Mask,              XK_q,      spawn,          {.v = restart} },
 };
 
 /* button definitions */
