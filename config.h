@@ -91,6 +91,12 @@ static const char *i3lock[]  = { "sh", "/home/magneto/.config/i3/scripts/.lock.s
 static const char *clipGoShow[]  = { "/home/magneto/go/bin/clipGo", "show", NULL };
 static const char *clipGoDelete[]  = { "/home/magneto/go/bin/clipGo", "delete", NULL };
 static const char *cliplistner[]  = { "sh", "/home/magneto/.config/mtools/cliplistner.sh", NULL };
+static const char *amixupvol[]   = { "amixer", "-q", "-D", "pulse", "set", "Master", "2%+", "unmute",   NULL };
+static const char *amixdownvol[]   = { "amixer", "-q", "-D", "pulse", "set", "Master", "2%-", "unmute",   NULL };
+static const char *amixmutevol[]   = { "amixer", "-q", "set", "Master", "mute",  NULL };
+static const char *playpause[]   = { "payerctl", "play-pause", NULL };
+static const char *nextmedia[]   = { "payerctl", "next", NULL };
+static const char *prevmedia[]   = { "payerctl", "previus", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -123,6 +129,19 @@ static Key keys[] = {
 	{ MODKEY,                       XK_n,      spawn,          {.v = blueman } },
 	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = nmdmenu } },
 	{ MODKEY,                       XK_m,      spawn,          {.v = thunderbird } },
+
+	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          {.v = amixupvol } },
+	{ 0,         XF86XK_AudioLowerVolume,      spawn,          {.v = amixdownvol } },
+	{ 0,                XF86XK_AudioMute,      spawn,          {.v = amixmutevol } },
+	{ 0,                XF86XK_AudioPlay,      spawn,          {.v = prevmedia } },
+	{ 0,                XF86XK_AudioNext,      spawn,          {.v = nextmedia } },
+	{ 0,                XF86XK_AudioPrev,      spawn,          {.v = playpause } },
+	{ MODKEY,                      XK_F1,      spawn,          {.v = amixupvol } },
+	{ MODKEY,                      XK_F2,      spawn,          {.v = amixdownvol } },
+	{ MODKEY,                      XK_F3,      spawn,          {.v = amixmutevol } },
+	{ MODKEY,                      XK_F5,      spawn,          {.v = prevmedia } },
+	{ MODKEY,                      XK_F6,      spawn,          {.v = nextmedia } },
+	{ MODKEY,                      XK_F7,      spawn,          {.v = playpause } },
 
 	{ MODKEY,                       XK_v,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
