@@ -16,7 +16,7 @@ static const char dmenufont[]       = "Hack:size=10";
 static const char col_gray1[]       = "#282A36";
 static const char col_gray2[]       = "#282A36";
 static const char col_gray3[]       = "#F8F8F2";
-static const char col_gray4[]       = "#000000";
+static const char col_gray4[]       = "#282A36";
 static const char col_cyan[]        = "#BD93F9";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -25,7 +25,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "dev", "sys", "www", "mail", "play", "med", "chat", "virt", "tor" };
+static const char *tags[] = { "dev", "sys", "www", "mail", "med", "play", "chat", "virt", "tor" };
 
 static const Rule rules[] = {
 	/* xprop(1):
