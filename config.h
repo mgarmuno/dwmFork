@@ -2,8 +2,12 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 0;
 static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
+static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -68,6 +72,7 @@ static const char *shutdown[]  = { "shutdown",  "-h", "now", NULL };
 static const char *restart[]  = { "reboot", NULL };
 static const char *doom[]     = { "/home/magneto/.emacs.d/bin/doom", "run", NULL };
 static const char *firefox[]  = { "firefox", NULL };
+static const char *firefoxpriv[]  = { "firefox", "-private-window", NULL };
 static const char *spotify[]  = { "spotify", NULL };
 static const char *thunderbird[]  = { "thunderbird", NULL };
 static const char *keepassxc[]  = { "keepassxc", NULL };
@@ -100,6 +105,7 @@ static const char *playpause[]   = { "payerctl", "play-pause", NULL };
 static const char *nextmedia[]   = { "payerctl", "next", NULL };
 static const char *prevmedia[]   = { "payerctl", "previus", NULL };
 
+#include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                XK_Return,                 spawn,          {.v = termcmd } },
@@ -120,6 +126,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,    XK_s,                      spawn,          {.v = popcorntime } },
 	{ MODKEY,                XK_d,                      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                XK_f,                      spawn,          {.v = firefox } },
+	{ MODKEY|Mod1Mask,       XK_f,                      spawn,          {.v = firefoxpriv } },
 	{ MODKEY|ShiftMask,      XK_f,                      spawn,          {.v = chrome } },
 	{ MODKEY|ControlMask,    XK_f,                      spawn,          {.v = chromium } },
 	{ MODKEY,                XK_g,                      spawn,          {.v = steam } },
@@ -145,9 +152,28 @@ static Key keys[] = {
 	{ MODKEY,                XK_F6,                     spawn,          {.v = nextmedia } },
 	{ MODKEY,                XK_F7,                     spawn,          {.v = playpause } },
 
+	{ MODKEY|Mod4Mask,              XK_h,              incrgaps,       {.i = +1 } },
+	{ MODKEY|Mod4Mask,              XK_l,              incrgaps,       {.i = -1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_h,              incrogaps,      {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_l,              incrogaps,      {.i = -1 } },
+	{ MODKEY|Mod4Mask|ControlMask,  XK_h,              incrigaps,      {.i = +1 } },
+	{ MODKEY|Mod4Mask|ControlMask,  XK_l,              incrigaps,      {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_0,              togglegaps,     {0} },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,              defaultgaps,    {0} },
+	{ MODKEY,                       XK_minus,          incrihgaps,     {.i = +1 } },
+	{ MODKEY,                       XK_equal,          incrihgaps,     {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_y,              incrivgaps,     {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_o,              incrivgaps,     {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_y,              incrohgaps,     {.i = +1 } },
+	{ MODKEY|Mod4Mask,              XK_o,              incrohgaps,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_y,              incrovgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_o,              incrovgaps,     {.i = -1 } },
+
 	{ MODKEY,                XK_v,                      togglebar,      {0} },
 	{ MODKEY,                XK_j,                      focusstack,     {.i = +1 } },
 	{ MODKEY,                XK_k,                      focusstack,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                XK_i,                      incnmaster,     {.i = +1 } },
 	{ MODKEY,                XK_o,                      incnmaster,     {.i = -1 } },
 	{ MODKEY,                XK_h,                      setmfact,       {.f = -0.01} },
