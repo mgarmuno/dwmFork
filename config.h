@@ -107,6 +107,7 @@ static const char *brightup[]   = { "pkexec", "/usr/bin/brillo", "-A", "2", NULL
 static const char *playpause[]   = { "payerctl", "play-pause", NULL };
 static const char *nextmedia[]   = { "payerctl", "next", NULL };
 static const char *prevmedia[]   = { "payerctl", "previus", NULL };
+static const char *flameshot[]   = { "flameshot", "gui", NULL };
 
 #include "movestack.c"
 static Key keys[] = {
@@ -142,6 +143,7 @@ static Key keys[] = {
 	{ MODKEY,                XK_n,                      spawn,          {.v = blueman } },
 	{ MODKEY|ShiftMask,      XK_n,                      spawn,          {.v = nmdmenu } },
 	{ MODKEY,                XK_m,                      spawn,          {.v = thunderbird } },
+	{ MODKEY,                XK_Print,                  spawn,          {.v = flameshot } },
 
 	{ 0,                     XF86XK_AudioRaiseVolume,   spawn,          {.v = amixupvol } },
 	{ 0,                     XF86XK_AudioLowerVolume,   spawn,          {.v = amixdownvol } },
