@@ -143,7 +143,7 @@ static Key keys[] = {
 	{ MODKEY,                XK_n,                      spawn,          {.v = blueman } },
 	{ MODKEY|ShiftMask,      XK_n,                      spawn,          {.v = nmdmenu } },
 	{ MODKEY,                XK_m,                      spawn,          {.v = thunderbird } },
-	{ MODKEY,                XK_Print,                  spawn,          {.v = flameshot } },
+	{ 0,                     XK_Print,                  spawn,          {.v = flameshot } },
 
 	{ 0,                     XF86XK_AudioRaiseVolume,   spawn,          {.v = amixupvol } },
 	{ 0,                     XF86XK_AudioLowerVolume,   spawn,          {.v = amixdownvol } },
