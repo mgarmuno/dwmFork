@@ -68,7 +68,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]          = { "dmenu_run", "-m", dmenumon, NULL };
-static const char *termcmd[]           = { "termite", NULL };
+static const char *termcmd[]           = { "alacritty", NULL };
 static const char *shutdown[]          = { "shutdown",  "-h", "now", NULL };
 static const char *restart[]           = { "reboot", NULL };
 static const char *doom[]              = { "/home/magneto/.emacs.d/bin/doom", "run", NULL };
@@ -84,9 +84,9 @@ static const char *bravePrivate[]      = { "brave", "-private-window", NULL };
 static const char *chrome[]            = { "google-chrome-stable", NULL };
 static const char *chromium[]          = { "chromium", NULL };
 static const char *vscode[]            = { "vscode", NULL };
-static const char *vim[]               = { "termite", "-e", "vim", NULL };
-static const char *popcorntime[]       = { "popcorntime", NULL };
-static const char *ranger[]            = { "termite", "-e", "ranger", NULL };
+static const char *vim[]               = { "alacritty", "-e", "vim", NULL };
+static const char *popcorntime[]       = { "popcorntime-ru", NULL };
+static const char *ranger[]            = { "alacritty", "-e", "ranger", NULL };
 static const char *pcmanfm[]           = { "pcmanfm", NULL };
 static const char *steam[]             = { "steam-runtime", NULL };
 static const char *lutris[]            = { "lutris", NULL };
@@ -94,7 +94,7 @@ static const char *transmission[]      = { "transmission-gtk", NULL };
 static const char *telegram[]          = { "telegram-desktop", NULL };
 static const char *blueman[]           = { "blueman-manager", NULL };
 static const char *nmdmenu[]           = { "networkmanager_dmenu", NULL };
-static const char *vlc[]               = { "vlc", NULL };
+static const char *vlc[]               = { "smplayer", NULL };
 static const char *pavucontrol[]       = { "pavucontrol", NULL };
 static const char *i3lock[]            = { "sh", "/home/magneto/.config/mscripts/.lock.sh", NULL };
 static const char *clipGoShow[]        = { "/home/magneto/go/bin/clipGo", "show", NULL };
@@ -190,7 +190,7 @@ static Key keys[] = {
 	{ MODKEY,                XK_Tab,                    view,           {0} },
 	{ MODKEY,                XK_q,                      killclient,     {0} },
 	{ MODKEY,                XK_z,                      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY|ShiftMask,      XK_f,                      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,      XK_z,                      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,      XK_space,                  setlayout,      {0} },
 	{ MODKEY,                XK_space,                  togglefloating, {0} },
 	{ MODKEY,                XK_0,                      view,           {.ui = ~0 } },
