@@ -29,7 +29,7 @@ static const char *colors[][3]           = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "","", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -71,7 +71,6 @@ static const char *dmenucmd[]          = { "dmenu_run", "-m", dmenumon, NULL };
 static const char *termcmd[]           = { "alacritty", NULL };
 static const char *shutdown[]          = { "shutdown",  "-h", "now", NULL };
 static const char *restart[]           = { "reboot", NULL };
-static const char *doom[]              = { "/home/magneto/.emacs.d/bin/doom", "run", NULL };
 static const char *firefox[]           = { "firefox", NULL };
 static const char *firefoxpriv[]       = { "firefox", "-private-window", NULL };
 static const char *spotify[]           = { "spotify", NULL };
@@ -83,9 +82,9 @@ static const char *brave[]             = { "brave", "-private-window", NULL };
 static const char *bravePrivate[]      = { "brave", "-private-window", NULL };
 static const char *chrome[]            = { "google-chrome-stable", NULL };
 static const char *chromium[]          = { "chromium", NULL };
-static const char *vscode[]            = { "vscode", NULL };
+static const char *vscode[]            = { "code", NULL };
 static const char *vim[]               = { "alacritty", "-e", "vim", NULL };
-static const char *popcorntime[]       = { "popcorntime-ru", NULL };
+static const char *popcorntime[]       = { "popcorntime", NULL };
 static const char *ranger[]            = { "alacritty", "-e", "ranger", NULL };
 static const char *pcmanfm[]           = { "pcmanfm", NULL };
 static const char *steam[]             = { "steam-runtime", NULL };
@@ -118,9 +117,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,      XK_w,                      spawn,          {.v = librewolfPrivate } },
 	{ MODKEY|ControlMask,    XK_w,                      spawn,          {.v = brave } },
 	{ MODKEY|Mod1Mask,       XK_w,                      spawn,          {.v = bravePrivate } },
-	{ MODKEY,                XK_e,                      spawn,          {.v = doom } },
+	{ MODKEY,                XK_e,                      spawn,          {.v = vim } },
 	{ MODKEY|ShiftMask,      XK_e,                      spawn,          {.v = vscode } },
-	{ MODKEY|ControlMask,    XK_e,                      spawn,          {.v = vim } },
 	{ MODKEY,                XK_r,                      spawn,          {.v = ranger } },
 	{ MODKEY|ShiftMask,      XK_r,                      spawn,          {.v = pcmanfm } },
 	{ MODKEY,                XK_t,                      spawn,          {.v = transmission } },
@@ -168,8 +166,6 @@ static Key keys[] = {
 	{ MODKEY|Mod4Mask|ControlMask,  XK_l,              incrigaps,      {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_0,              togglegaps,     {0} },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,              defaultgaps,    {0} },
-	{ MODKEY,                       XK_minus,          incrihgaps,     {.i = +1 } },
-	{ MODKEY,                       XK_equal,          incrihgaps,     {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_y,              incrivgaps,     {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_o,              incrivgaps,     {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_y,              incrohgaps,     {.i = +1 } },
@@ -193,7 +189,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,      XK_z,                      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,      XK_space,                  setlayout,      {0} },
 	{ MODKEY,                XK_space,                  togglefloating, {0} },
-	{ MODKEY,                XK_0,                      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,      XK_0,                      tag,            {.ui = ~0 } },
 	{ MODKEY,                XK_comma,                  focusmon,       {.i = -1 } },
 	{ MODKEY,                XK_period,                 focusmon,       {.i = +1 } },
@@ -208,6 +203,9 @@ static Key keys[] = {
 	TAGKEYS(                 XK_7,                      6)
 	TAGKEYS(                 XK_8,                      7)
 	TAGKEYS(                 XK_9,                      8)
+	TAGKEYS(                 XK_0,                      9)
+	TAGKEYS(                 XK_minus,                  10)
+	TAGKEYS(                 XK_equal,                  11)
 	{ MODKEY|ShiftMask,      XK_BackSpace,              quit,           {0} },
 	{ MODKEY|ControlMask,    XK_BackSpace,              spawn,          {.v = shutdown} },
 	{ MODKEY|Mod1Mask,       XK_BackSpace,              spawn,          {.v = restart} },
