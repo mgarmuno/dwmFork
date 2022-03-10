@@ -15,7 +15,7 @@ static const int systraypinningfailfirst = 1;
 static const int showsystray             = 1;     /* 0 means no systray */
 static const int showbar                 = 1;        /* 0 means no bar */
 static const int topbar                  = 1;        /* 0 means bottom bar */
-static const char *fonts[]               = { "Hack:size=9" };
+static const char *fonts[]               = { "Hack:style=Regular:size=10","Symbols Nerd Font:pixelsize=11:antialias=true;autohint=true" };
 static const char dmenufont[]            = "Hack:size=9";
 static const char col_gray1[]            = "#282A36";
 static const char col_gray2[]            = "#282A36";
@@ -158,18 +158,18 @@ static Key keys[] = {
 	{ MODKEY,                XK_F6,                     spawn,          {.v = nextmedia } },
 	{ MODKEY,                XK_F7,                     spawn,          {.v = playpause } },
 
-	{ MODKEY|Mod4Mask,              XK_h,              incrgaps,       {.i = +1 } },
-	{ MODKEY|Mod4Mask,              XK_l,              incrgaps,       {.i = -1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_h,              incrogaps,      {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_l,              incrogaps,      {.i = -1 } },
-	{ MODKEY|Mod4Mask|ControlMask,  XK_h,              incrigaps,      {.i = +1 } },
-	{ MODKEY|Mod4Mask|ControlMask,  XK_l,              incrigaps,      {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_Delete,              togglegaps,     {0} },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_Delete,              defaultgaps,    {0} },
+	{ MODKEY|Mod1Mask,              XK_h,              incrgaps,       {.i = +1 } },
+	{ MODKEY|Mod1Mask,              XK_l,              incrgaps,       {.i = -1 } },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_h,              incrogaps,      {.i = +1 } },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_l,              incrogaps,      {.i = -1 } },
+	{ MODKEY|Mod1Mask|ControlMask,  XK_h,              incrigaps,      {.i = +1 } },
+	{ MODKEY|Mod1Mask|ControlMask,  XK_l,              incrigaps,      {.i = -1 } },
+	{ MODKEY|Mod1Mask,              XK_Delete,              togglegaps,     {0} },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_Delete,              defaultgaps,    {0} },
 	{ MODKEY|ControlMask,           XK_y,              incrivgaps,     {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_o,              incrivgaps,     {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_y,              incrohgaps,     {.i = +1 } },
-	{ MODKEY|Mod4Mask,              XK_o,              incrohgaps,     {.i = -1 } },
+	{ MODKEY|Mod1Mask,              XK_y,              incrohgaps,     {.i = +1 } },
+	{ MODKEY|Mod1Mask,              XK_o,              incrohgaps,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_y,              incrovgaps,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_o,              incrovgaps,     {.i = -1 } },
 
