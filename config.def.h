@@ -15,7 +15,7 @@ static const int systraypinningfailfirst = 1;
 static const int showsystray             = 1;     /* 0 means no systray */
 static const int showbar                 = 1;        /* 0 means no bar */
 static const int topbar                  = 1;        /* 0 means bottom bar */
-static const char *fonts[]               = { "Hack:size=9" };
+static const char *fonts[]               = { "Hack:style=Regular:size=10","Symbols Nerd Font:pixelsize=11:antialias=true;autohint=true" };
 static const char dmenufont[]            = "Hack:size=9";
 static const char col_gray1[]            = "#282A36";
 static const char col_gray2[]            = "#282A36";
@@ -29,7 +29,7 @@ static const char *colors[][3]           = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "","", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -71,7 +71,6 @@ static const char *dmenucmd[]          = { "dmenu_run", "-m", dmenumon, NULL };
 static const char *termcmd[]           = { "alacritty", NULL };
 static const char *shutdown[]          = { "shutdown",  "-h", "now", NULL };
 static const char *restart[]           = { "reboot", NULL };
-static const char *doom[]              = { "/home/magneto/.emacs.d/bin/doom", "run", NULL };
 static const char *firefox[]           = { "firefox", NULL };
 static const char *firefoxpriv[]       = { "firefox", "-private-window", NULL };
 static const char *spotify[]           = { "spotify", NULL };
@@ -83,7 +82,7 @@ static const char *brave[]             = { "brave", "-private-window", NULL };
 static const char *bravePrivate[]      = { "brave", "-private-window", NULL };
 static const char *chrome[]            = { "google-chrome-stable", NULL };
 static const char *chromium[]          = { "chromium", NULL };
-static const char *vscode[]            = { "vscode", NULL };
+static const char *vscode[]            = { "code", NULL };
 static const char *vim[]               = { "alacritty", "-e", "vim", NULL };
 static const char *popcorntime[]       = { "popcorntime", NULL };
 static const char *ranger[]            = { "alacritty", "-e", "ranger", NULL };
@@ -94,15 +93,15 @@ static const char *transmission[]      = { "transmission-gtk", NULL };
 static const char *telegram[]          = { "telegram-desktop", NULL };
 static const char *blueman[]           = { "blueman-manager", NULL };
 static const char *nmdmenu[]           = { "networkmanager_dmenu", NULL };
-static const char *vlc[]               = { "vlc", NULL };
+static const char *vlc[]               = { "smplayer", NULL };
 static const char *pavucontrol[]       = { "pavucontrol", NULL };
 static const char *i3lock[]            = { "sh", "/home/magneto/.config/mscripts/.lock.sh", NULL };
 static const char *clipGoShow[]        = { "/home/magneto/go/bin/clipGo", "show", NULL };
 static const char *clipGoDelete[]      = { "/home/magneto/go/bin/clipGo", "delete", NULL };
 static const char *cliplistner[]       = { "sh", "/home/magneto/.config/mtools/cliplistner.sh", NULL };
-static const char *amixdownvol[]       = { "amixer", "-q", "-D", "pulse", "set", "Master", "2%-", "unmute",   NULL };
-static const char *amixupvol[]         = { "amixer", "-q", "-D", "pulse", "set", "Master", "2%+", "unmute",   NULL };
-static const char *amixmutevol[]       = { "amixer", "-q", "set", "Master", "mute",  NULL };
+static const char *amixdownvol[]       = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-2%", NULL };
+static const char *amixupvol[]         = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+2%",   NULL };
+static const char *amixmutevol[]       = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
 static const char *brightdown[]        = { "pkexec", "/usr/bin/brillo", "-U", "2", NULL };
 static const char *brightup[]          = { "pkexec", "/usr/bin/brillo", "-A", "2", NULL };
 static const char *playpause[]         = { "payerctl", "play-pause", NULL };
@@ -118,9 +117,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,      XK_w,                      spawn,          {.v = librewolfPrivate } },
 	{ MODKEY|ControlMask,    XK_w,                      spawn,          {.v = brave } },
 	{ MODKEY|Mod1Mask,       XK_w,                      spawn,          {.v = bravePrivate } },
-	{ MODKEY,                XK_e,                      spawn,          {.v = doom } },
+	{ MODKEY,                XK_e,                      spawn,          {.v = vim } },
 	{ MODKEY|ShiftMask,      XK_e,                      spawn,          {.v = vscode } },
-	{ MODKEY|ControlMask,    XK_e,                      spawn,          {.v = vim } },
 	{ MODKEY,                XK_r,                      spawn,          {.v = ranger } },
 	{ MODKEY|ShiftMask,      XK_r,                      spawn,          {.v = pcmanfm } },
 	{ MODKEY,                XK_t,                      spawn,          {.v = transmission } },
@@ -160,20 +158,18 @@ static Key keys[] = {
 	{ MODKEY,                XK_F6,                     spawn,          {.v = nextmedia } },
 	{ MODKEY,                XK_F7,                     spawn,          {.v = playpause } },
 
-	{ MODKEY|Mod4Mask,              XK_h,              incrgaps,       {.i = +1 } },
-	{ MODKEY|Mod4Mask,              XK_l,              incrgaps,       {.i = -1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_h,              incrogaps,      {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_l,              incrogaps,      {.i = -1 } },
-	{ MODKEY|Mod4Mask|ControlMask,  XK_h,              incrigaps,      {.i = +1 } },
-	{ MODKEY|Mod4Mask|ControlMask,  XK_l,              incrigaps,      {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_0,              togglegaps,     {0} },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,              defaultgaps,    {0} },
-	{ MODKEY,                       XK_minus,          incrihgaps,     {.i = +1 } },
-	{ MODKEY,                       XK_equal,          incrihgaps,     {.i = -1 } },
+	{ MODKEY|Mod1Mask,              XK_h,              incrgaps,       {.i = +1 } },
+	{ MODKEY|Mod1Mask,              XK_l,              incrgaps,       {.i = -1 } },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_h,              incrogaps,      {.i = +1 } },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_l,              incrogaps,      {.i = -1 } },
+	{ MODKEY|Mod1Mask|ControlMask,  XK_h,              incrigaps,      {.i = +1 } },
+	{ MODKEY|Mod1Mask|ControlMask,  XK_l,              incrigaps,      {.i = -1 } },
+	{ MODKEY|Mod1Mask,              XK_Delete,              togglegaps,     {0} },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_Delete,              defaultgaps,    {0} },
 	{ MODKEY|ControlMask,           XK_y,              incrivgaps,     {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_o,              incrivgaps,     {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_y,              incrohgaps,     {.i = +1 } },
-	{ MODKEY|Mod4Mask,              XK_o,              incrohgaps,     {.i = -1 } },
+	{ MODKEY|Mod1Mask,              XK_y,              incrohgaps,     {.i = +1 } },
+	{ MODKEY|Mod1Mask,              XK_o,              incrohgaps,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_y,              incrovgaps,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_o,              incrovgaps,     {.i = -1 } },
 
@@ -193,7 +189,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,      XK_z,                      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,      XK_space,                  setlayout,      {0} },
 	{ MODKEY,                XK_space,                  togglefloating, {0} },
-	// { MODKEY,                XK_0,                      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,      XK_0,                      tag,            {.ui = ~0 } },
 	{ MODKEY,                XK_comma,                  focusmon,       {.i = -1 } },
 	{ MODKEY,                XK_period,                 focusmon,       {.i = +1 } },
@@ -208,6 +203,9 @@ static Key keys[] = {
 	TAGKEYS(                 XK_7,                      6)
 	TAGKEYS(                 XK_8,                      7)
 	TAGKEYS(                 XK_9,                      8)
+	TAGKEYS(                 XK_0,                      9)
+	TAGKEYS(                 XK_minus,                  10)
+	TAGKEYS(                 XK_equal,                  11)
 	{ MODKEY|ShiftMask,      XK_BackSpace,              quit,           {0} },
 	{ MODKEY|ControlMask,    XK_BackSpace,              spawn,          {.v = shutdown} },
 	{ MODKEY|Mod1Mask,       XK_BackSpace,              spawn,          {.v = restart} },
