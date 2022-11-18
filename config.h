@@ -146,6 +146,8 @@ static Key keys[] = {
 
 	{ 0,                     XF86XK_AudioRaiseVolume,   spawn,          {.v = amixupvol } },
 	{ 0,                     XF86XK_AudioLowerVolume,   spawn,          {.v = amixdownvol } },
+	{ 0,                     XF86XK_MonBrightnessUp,    spawn,          {.v = brightup } },
+	{ 0,                     XF86XK_MonBrightnessDown,  spawn,          {.v = brightdown } },
 	{ 0,                     XF86XK_AudioMute,          spawn,          {.v = amixmutevol } },
 	{ 0,                     XF86XK_AudioPlay,          spawn,          {.v = prevmedia } },
 	{ 0,                     XF86XK_AudioNext,          spawn,          {.v = nextmedia } },
